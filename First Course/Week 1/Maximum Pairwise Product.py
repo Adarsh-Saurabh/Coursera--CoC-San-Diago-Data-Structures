@@ -1,22 +1,19 @@
-
-
-def max_pairwise_product(input_numbers):
-
-    n = len(input_numbers)
-    input_numbers = input_numbers.sort()
-
+def max_pairwise_product(numbers):
+    first = 0
+    second = 0
+    first = max(numbers)
+    for i in range(len(numbers)):
+        if numbers[i] == first:
+            continue
+        else:
+            second = max(second,numbers[i])
+    place = numbers.count(first)
+    if place ==1:
+        return first*second
+    else:
+        return first*first
     
-
-    return input_numbers[n-1]*input_numbers[n-2]
-
-
-
-
-
-
-
-
 if __name__ == '__main__':
     input_n = int(input())
-    input_numbers = input().split()
+    input_numbers = [int(x) for x in input().split()]
     print(max_pairwise_product(input_numbers))
