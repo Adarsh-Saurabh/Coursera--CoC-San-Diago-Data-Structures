@@ -8,9 +8,9 @@ def fastfib(n,m):
     else:
         a = [0,1]
         for i in range(2, n+1):
-            a.append(a[-1] + a[-2])
+            a.append((a[-1] + a[-2])%m)
         c = a[n]
-        return c % m
+        return c
 
 
 
@@ -18,7 +18,7 @@ def fastfib(n,m):
 if __name__ == '__main__':
     input = sys.stdin.read();
     n, m = map(int, input.split())
-    # n , m  = 1000 , 100
+    # n , m  = 100 , 999
     print(fastfib(n, m))
 
 
