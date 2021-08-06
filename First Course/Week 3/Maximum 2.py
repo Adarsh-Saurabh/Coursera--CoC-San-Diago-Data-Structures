@@ -30,34 +30,22 @@ def get_optimal_value(capacity, weights, values):
             weights.remove(weights[i])
             values.remove(values[i])
 
-def get(capacity , weights , values):
-    
+def get(capacity , weights , values):  
     opt_value = 0
     items = list(zip(values, weights))
     print(items)
     items.sort(key=lambda item: item[0] / item[1], reverse=True)
     values = [item[0] for item in items]
     weights = [item[1] for item in items]
-
     for value, weight in zip(values, weights):
         if capacity == 0:
-            return opt_value
+            return round(opt_value, 4)
         min_weight = min(weight, capacity)
         opt_value += min_weight * (value / weight)
         weight -= min_weight
         capacity -= min_weight
 
     return round(opt_value, 4)
-    
-
-    
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
@@ -82,19 +70,14 @@ if __name__ == "__main__":
         wei = []
         val = []
         for i in range(n):
-            wei.append(random.randint(1,1000))
-            val.append(random.randint(1,1000))
+            wei.append(random.randint(1,100000))
+            val.append(random.randint(1,100000))
         weights = wei
         values = val
         capacity = random.randint(10 , 1000)
-        if get(capacity , weights , values) != get_optimal_value(capacity, weights, values):
-            print( get(capacity, weights, values) ,  get_optimal_value(capacity, weights, values))
+        if get(capacity , weights , values) != get_optimal_value(capacity, weights, values) :
+            print( get(capacity, weights, values) ,  get_optimal_value(capacity, weights, values)  )
             print(weights )
             print(values)
             print(capacity)
             break
-
-
-    
-    
-
