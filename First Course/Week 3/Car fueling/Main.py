@@ -1,50 +1,34 @@
-# python3
 import sys
 
-
-# def compute_min_refills(distance, tank, stops):
-#     num_refills = 0
-#     current_refills = 0
-#     while current_refills<= len(stops):
-#         last_refill = current_refills
-#         while (current_refills <= len(stops) and stops[current_refills + 1] - stops[last_refill] <= tank):
-#             current_refills += 1
-#         if current_refills == last_refill:
-#             return -1
-#         elif current_refills <= len(stops):
-#             num_refills += 1
-#     return num_refills
-
-
-
 def compute_min_refills(distance , tank , stops):
-    trav_dist = 0
-    num_refills = 0
-    for i in range(len(stops)+1):
+    length , refill = 0,0
+    stops.append(distance)
+    z = 0
+    stops.insert(0,z)
+    stops.sort()
+    for i in range(len(stops) - 1):
         if stops[i+1] - stops[i] > tank:
-            print('s)')
-            # return -1
-        else:
-            random =[]
-            for j in range(1,len(stops)):
-               
+            return -1
+    if tank >= distance:
+        return 0
+    i = 0
+    while length < stops[-1]:
+        random = []
+        refill += 1
+        while length + tank >= stops[i]:
+            random.append(stops[i])
+            i += 1
+            if i == len(stops) :
+                break
+        length += tank
+        x = max(random)
+        if distance <= stops[i-1]:
+            refill -= 1
+        if x == stops[-2]:
+            return refill
+    return refill     
                 
-                random.append(stops[j] - stops[j-1])
-            trav_dist += random[random.index(max(random))]
-            if trav_dist > distance:
-                print('k')
-                # return -1
-            else:
-                num_refills += 1
-    return num_refills
-
-
-
+                
 if __name__ == '__main__':
-    # d, m, _, *stops = map(int, sys.stdin.read().split())
-    # print(compute_min_refills(d, m, stops))
-
-    distance = 975
-    tank = 400
-    stops = [0, 200, 375, 550, 750, 950]
+    distance, tank, _, *stops = map(int, sys.stdin.read().split())
     print(compute_min_refills(distance, tank, stops))
