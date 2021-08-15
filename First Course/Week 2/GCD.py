@@ -26,9 +26,9 @@ def gcd(a,b):
     return arr[i-1]
              
 if __name__ == "__main__":
-    input = sys.stdin.read()
-    # a , b = 18,35
-    a, b = map(int, input.split())
+    # input = sys.stdin.read()
+    a , b = 7,3
+    # a, b = map(int, input.split())
     print(gcd(a, b))
 
 
