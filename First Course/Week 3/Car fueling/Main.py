@@ -13,15 +13,15 @@ def compute_min_refills(distance , tank , stops):
         return 0
     i = 0
     while length < stops[-1]:
-        random = []
+        array = []
         refill += 1
         while length + tank >= stops[i]:
-            random.append(stops[i])
+            array.append(stops[i])
             i += 1
             if i == len(stops) :
                 break
         length += tank
-        x = max(random)
+        x = max(array)
         if distance <= stops[i-1]:
             refill -= 1
         if x == stops[-2]:
@@ -30,5 +30,10 @@ def compute_min_refills(distance , tank , stops):
                 
                 
 if __name__ == '__main__':
-    distance, tank, _, *stops = map(int, sys.stdin.read().split())
+    # distance, tank, _, *stops = map(int, sys.stdin.read().split())
+    # print(compute_min_refills(distance, tank, stops))
+
+    distance = 240
+    tank = 50
+    stops = [50,100 ,150, 190]
     print(compute_min_refills(distance, tank, stops))
